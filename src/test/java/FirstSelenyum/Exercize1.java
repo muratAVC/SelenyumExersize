@@ -92,13 +92,13 @@ public class Exercize1 {
         //15. Click 'Continue' button
         Cdriver.findElement(By.xpath("//a[@class='btn btn-primary']")).click();
         //16. Verify that 'Logged in as username' is visible
-
+/*
         //17. Click 'Delete Account' button
         Cdriver.findElement(By.xpath(" //a[text()=' Delete Account']")).click();
 
         //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
         Assert.assertTrue(Cdriver.findElement(By.xpath("//b[text()='Account Deleted!']")).isDisplayed());
-        Cdriver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
+        Cdriver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();*/
 
 
     Cdriver.close();
