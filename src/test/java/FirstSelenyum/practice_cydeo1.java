@@ -3,10 +3,14 @@ package FirstSelenyum;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.Test;
+import org.openqa.selenium.interactions.Actions;
+
+import javax.swing.*;
 import java.time.Duration;
 
 public class practice_cydeo1 {
@@ -172,5 +176,58 @@ public void day4_task3(){
     drv.quit();
 
 }
+@Test
+public void day4_odev1(){
+       WebDriverManager.chromedriver().setup();
+       WebDriver drv=new ChromeDriver();
+       drv.navigate().to("https://automationexercise.com/");
+       drv.manage().window().maximize();
+       drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    Actions actions=new Actions(drv);
+    drv.findElement(By.xpath("//a[@href='/login']")).click();
+    actions.sendKeys(drv.findElement(By.xpath("//input[@type='text']")),"veli")
+            .sendKeys(Keys.TAB)
+            .sendKeys("asdf@gmail.com")
+            .sendKeys(Keys.TAB).perform();
+            drv.findElement(By.xpath("//button[@data-qa='signup-button']")).click();
+    actions.click(drv.findElement(By.xpath("//input[@id='id_gender1']")))
+            .sendKeys(Keys.TAB)
+            .sendKeys("veli")
+            .sendKeys(Keys.TAB)
+            .sendKeys("pasword")
+            .sendKeys(Keys.TAB)
+            .sendKeys("04")
+            .sendKeys(Keys.TAB)
+            .sendKeys("04")
+            .sendKeys(Keys.TAB)
+            .sendKeys("1980")
+            .sendKeys(Keys.TAB)
+            .click()
+            .sendKeys(Keys.TAB)
+            .click()
+            .sendKeys("veli")
+            .sendKeys(Keys.TAB)
+            .sendKeys("tunc")
+            .sendKeys(Keys.TAB)
+            .sendKeys("google")
+            .sendKeys(Keys.TAB)
+            .sendKeys("yaşijyurt mah 15 sok")
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys("Canada")
+            .sendKeys(Keys.TAB)
+            .sendKeys("murat")
+            .sendKeys(Keys.TAB)
+            .sendKeys("adana")
+            .sendKeys(Keys.TAB)
+            .sendKeys("01800")
+            .sendKeys(Keys.TAB)
+            .sendKeys("123456789")
+            .sendKeys(Keys.TAB)
+            .click().perform();
+    drv.quit();
+
+}
+
 
 }
