@@ -14,6 +14,7 @@ import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class Exersize2 {
 @Test
@@ -135,7 +136,127 @@ drv.quit();
         //select.selectByValue("2");
         //select.deselectByVisibleText("Option 2");
         String asd=select.getFirstSelectedOption().getText();
-        System.out.println(asd);
+        //System.out.println(asd);
 
     }
+@Test
+    public void cydeoEnter(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver drv= new ChromeDriver();
+        drv.manage().window().maximize();
+        drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        drv.navigate().to("https://practice.cydeo.com/abtest");
+        Assert.assertTrue(drv.findElement(By.xpath("//*[@id='page-footer']/div/div/a")).isDisplayed());
+        drv.navigate().refresh();
+        Assert.assertTrue(drv.findElement(By.xpath("//*[@id='page-footer']/div/div/a")).isDisplayed());
+        drv.quit();
+    }
+    @Test
+    public void task1day5(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver drv= new ChromeDriver();
+        drv.manage().window().maximize();
+        drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        drv.navigate().to("https://practice.cydeo.com/add_remove_elements/");
+        drv.findElement(By.xpath("//*[@id='content']/div/button")).click();
+        Assert.assertTrue(drv.findElement(By.xpath("//*[@id='elements']/button")).isDisplayed());
+        drv.findElement(By.xpath("//*[@id='elements']/button")).click();
+        Assert.assertFalse(drv.findElement(By.xpath("//*[@id='elements']/button")).isDisplayed());
+        drv.quit();
+    }
+    @Test
+    public void task2day5(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver drv= new ChromeDriver();
+        drv.manage().window().maximize();
+        drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        drv.navigate().to("https://practice.cydeo.com/radio_buttons");
+        boolean a=clickAndVerifyRadioButton(drv,"color","red");
+        //drv.findElement(By.xpath("//*[@id='content']/div/div[8]/label")).click();
+        //Assert.assertTrue(drv.findElement(By.xpath("//*[@id=\"hockey\"]")).isSelected());
+
+        drv.quit();
+    }
+
+    public boolean clickAndVerifyRadioButton(WebDriver drv, String name, String id){
+        boolean result=false;
+        ArrayList<WebElement> webElements= (ArrayList<WebElement>) drv.findElements(By.xpath("//input[@type='radio']"));
+        for (WebElement element: webElements) {
+            if(element.getAttribute("name").equals(name)){
+                if(element.getAttribute("id").equals(id)){
+                    element.click();
+                    if (element.isSelected()) result=true;
+
+                }
+            }
+        }
+        return result;
+    }
+@Test
+    public void task5_day5(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver drv= new ChromeDriver();
+        drv.manage().window().maximize();
+        drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        drv.navigate().to("https://practice.cydeo.com/dropdown");
+        WebElement dropD=drv.findElement(By.xpath("//select[@id='dropdown']"));
+        Select select=new Select(dropD);
+        Assert.assertTrue(select.getFirstSelectedOption().getText().equals("Please select an option"));
+        Select select1=new Select(drv.findElement(By.xpath("//*[@id='state']")));
+        Assert.assertTrue(select1.getFirstSelectedOption().getText().equals("Select a State"));
+        drv.quit();
+    }
+
+@Test
+public void task6_day5(){
+    WebDriverManager.chromedriver().setup();
+    WebDriver drv= new ChromeDriver();
+    drv.manage().window().maximize();
+    drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    drv.navigate().to("https://practice.cydeo.com/dropdown");
+    Select year=new Select(drv.findElement(By.xpath("//*[@id='year']")));
+    Select month=new Select(drv.findElement(By.xpath("//*[@id='month']")));
+    Select day=new Select(drv.findElement(By.xpath("//*[@id='day']")));
+    month.selectByValue("11");
+    year.selectByVisibleText("1924");
+    day.selectByIndex(0);
+}
+@Test
+public void task7_day5(){
+    WebDriverManager.chromedriver().setup();
+    WebDriver drv= new ChromeDriver();
+    drv.manage().window().maximize();
+    drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    drv.navigate().to("https://practice.cydeo.com/dropdown");
+    drv.findElement(By.xpath("//*[@id='dropdownMenuLink']")).click();
+    drv.findElement(By.xpath("//*[@id='content']/div/div/a[4]")).click();
+    //System.out.println(drv.getTitle());
+
+    Assert.assertTrue(drv.getTitle().equals("Facebook - Log In or Sign Up"));
+    drv.quit();
+
+}
+
+@Test
+public void task8_day5(){
+    WebDriverManager.chromedriver().setup();
+    WebDriver drv= new ChromeDriver();
+    drv.manage().window().maximize();
+    drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    drv.navigate().to("https://practice.cydeo.com/dropdown");
+    Select select=new Select(drv.findElement(By.xpath("//*[@id='state']")));
+    ArrayList<WebElement> sel= (ArrayList<WebElement>) select.getOptions();
+    for (WebElement sdf: sel) {
+        System.out.println(sdf.getText());
+    }
+
+
+    /*
+    3. Select all the options from multiple select dropdown.
+4. Print out all selected values.
+5. Deselect all values.
+     */
+}
+
+
 }

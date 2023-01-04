@@ -11,35 +11,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class DenemeAlan {
     public static void main(String[] args) {
-        WebDriverManager.firefoxdriver().setup();
-        WebDriver drv=new FirefoxDriver();
-        drv.navigate().to("https://practice.cydeo.com/checkboxes");
+        WebDriverManager.chromedriver().setup();
+        WebDriver drv= new ChromeDriver();
         drv.manage().window().maximize();
-
         drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        drv.navigate().to("https://practice.cydeo.com/radio_buttons");
 
-        //drv.findElement(By.xpath("//input[@name='checkbox1']")).click();
-        WebElement asd=drv.findElement(By.xpath("//input[@name='checkbox1']"));
-        boolean a=asd.isSelected();
-        System.out.println("1 check"+a);
-        if (a){
-            drv.findElement(By.xpath("//input[@name='checkbox1']")).click();
-            a=asd.isSelected();
-            System.out.println("1 check"+a);
-        }
-        WebElement asdd=drv.findElement(By.xpath("//input[@name='checkbox2']"));
-        boolean ad=asdd.isSelected();
-        System.out.println("2 checkbox "+ad);
-        if (ad){
-            drv.findElement(By.xpath("//input[@name='checkbox2']")).click();
-            ad=asd.isSelected();
-            System.out.println("1 check"+ad);
-        }
-        /*drv.findElement(By.xpath("//input[@name='checkbox2']")).click();
-        drv.findElement(By.xpath("//input[@name='checkbox1']")).click();
-        drv.findElement(By.xpath("//input[@name='checkbox2']")).click();*/
     }
 }
