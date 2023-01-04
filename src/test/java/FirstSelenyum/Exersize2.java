@@ -3,10 +3,7 @@ package FirstSelenyum;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -249,14 +246,51 @@ public void task8_day5(){
     for (WebElement sdf: sel) {
         System.out.println(sdf.getText());
     }
+}
+@Test
+public void day6_task1(){
+    WebDriverManager.chromedriver().setup();
+    WebDriver drv= new ChromeDriver();
+    drv.manage().window().maximize();
+    drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    drv.navigate().to("http://practice.cydeo.com/javascript_alerts");
+    drv.findElement(By.xpath("//button[@onclick='jsAlert()']")).click();
+    Alert jsalert=drv.switchTo().alert();
+    jsalert.accept();
+    Assert.assertTrue(drv.findElement(By.xpath("//*[@id='result']")).isDisplayed());
+    drv.quit();
+}
 
-
+@Test
+public void day6_task2(){
+    WebDriverManager.chromedriver().setup();
+    WebDriver drv= new ChromeDriver();
+    drv.manage().window().maximize();
+    drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    drv.navigate().to("http://practice.cydeo.com/javascript_alerts");
+    drv.findElement(By.xpath("//button[@onclick='jsConfirm()']")).click();
+    drv.switchTo().alert().accept();
+    Assert.assertTrue(drv.findElement(By.xpath("//*[@id='result']")).isDisplayed());
+    drv.quit();
     /*
-    3. Select all the options from multiple select dropdown.
-4. Print out all selected values.
-5. Deselect all values.
+
+
+5. Verify “You clicked: Ok” text is displayed.
      */
 }
 
+@Test
+public void day6_task3(){
+    WebDriverManager.chromedriver().setup();
+    WebDriver drv= new ChromeDriver();
+    drv.manage().window().maximize();
+    drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    drv.navigate().to("http://practice.cydeo.com/javascript_alerts");
+    drv.findElement(By.xpath("//*[@id='content']/div/button[3]")).click();
+    drv.switchTo().alert().sendKeys("Hello!");
+    drv.switchTo().alert().accept();
+    Assert.assertTrue(drv.findElement(By.xpath("//*[@id='result']")).isDisplayed());
+    drv.quit();
+}
 
 }
